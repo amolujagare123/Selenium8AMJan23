@@ -21,9 +21,9 @@ public class SeleniumDemo2 {
 
 
         Thread.sleep(2000);
-        //driver.close(); // closes current window only
+       // driver.close(); // closes current window only
 
-        driver.quit(); // closes all the windows opened by the driver
+      driver.quit(); // closes all the windows opened by the driver
 
 
 
