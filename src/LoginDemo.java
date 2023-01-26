@@ -23,7 +23,7 @@ public class LoginDemo {
         btnLogin.click();
 
 
-        WebElement lnkAddCustomer = driver.findElement(By.linkText("Add Customer"));
+        WebElement lnkAddCustomer = driver.findElement(By.partialLinkText("Add C"));
         lnkAddCustomer.click();
 
 
