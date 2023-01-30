@@ -11,7 +11,7 @@ public class AddCustomerDemo {
 
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.get("http://localhost/stock/");
+        driver.get("https://stock.amolujagare.com/");
 
         WebElement txtUsername = driver.findElement(By.xpath("//input[@id='login-username']"));
         txtUsername.sendKeys("admin");
@@ -23,7 +23,8 @@ public class AddCustomerDemo {
         btnLogin.click();
 
 
-        WebElement lnkAddCustomer = driver.findElement(By.xpath("//a[@href='add_customer.php']"));
+       // WebElement lnkAddCustomer = driver.findElement(By.xpath("//a[@href='add_customer.php']"));
+        WebElement lnkAddCustomer = driver.findElement(By.xpath("//a[text()='Add Customer']"));
         lnkAddCustomer.click();
 
 
