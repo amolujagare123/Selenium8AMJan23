@@ -1,5 +1,12 @@
 <suite  name="project name">
 
+    <groups>
+        <run>
+            <include name="email"/>
+        </run>
+    </groups>
+
+
 
     <test name="module 1">
         <classes>

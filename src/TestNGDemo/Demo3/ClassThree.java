@@ -1,7 +1,8 @@
-package TestNGDemo.Demo;
+package TestNGDemo.Demo3;
 
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class ClassThree {
@@ -12,9 +13,18 @@ public class ClassThree {
         System.out.println("classThreeTest1");
     }
 
-    @Test (groups = "email")
-    public void classThreeTest2()
+
+    @Parameters({"myUrl","myUsername","myPassword"})
+    @Test
+    public void classThreeTest2(String url1,String username,String password)
     {
+        String url = url1;
+        /*String username = "amol";
+        String password = "amol1234";*/
+        System.out.println("url ="+url);
+        System.out.println("username ="+username);
+        System.out.println("password ="+password);
+
         System.out.println("classThreeTest2");
     }
 

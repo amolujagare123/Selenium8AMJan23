@@ -3,8 +3,16 @@
 
     <test name="module 1">
         <classes>
-            <class name="TestNGDemo.Demo2.ClassOne"/>
-            <class name="TestNGDemo.Demo.ClassTwo"/>
+            <class name="TestNGDemo.Demo2.ClassOne">
+                <methods>
+                   <!-- <exclude name="classOneTest2"/>
+                    <exclude name="classOneTest3"/>-->
+                    <include name="classOneTest2"/>
+                </methods>
+            </class>
+
+
+            <class name="TestNGDemo.Demo2.ClassTwo"/>
         </classes>
     </test>
 
