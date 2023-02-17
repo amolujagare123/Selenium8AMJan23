@@ -15,7 +15,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
 
-public class AddEmployee {
+public class AddEmployee2 {
     WebDriver driver ;
     @BeforeClass
     public void doLogin() {
@@ -53,15 +53,15 @@ public class AddEmployee {
         //2. convert file object into workbook object
         HSSFWorkbook workbook = new HSSFWorkbook(fis);
         //3. choose sheet
-        HSSFSheet sheet = workbook.getSheet("Add Employee");
+        HSSFSheet sheet = workbook.getSheet("Add Employee 2");
         int rowCount = sheet.getPhysicalNumberOfRows();
         int colCount = sheet.getRow(0).getLastCellNum();
 
-        Object[][] data = new Object[rowCount][colCount];
+        Object[][] data = new Object[rowCount-1][colCount];
 
-        for (int i=0;i<rowCount;i++)
+        for (int i=0;i<rowCount-1;i++)
         {
-            HSSFRow row = sheet.getRow(i);
+            HSSFRow row = sheet.getRow(i+1);
 
             data[i][0] = row.getCell(0).toString().trim();
             data[i][1] = row.getCell(1).toString().trim();

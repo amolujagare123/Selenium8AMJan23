@@ -3,6 +3,11 @@ package DataProvider;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,7 +20,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
 
-public class AddEmployee {
+import static DataProvider.Conversion.makeIntegerWithoutDecimal;
+
+public class AddEmployeeXLSX {
     WebDriver driver ;
     @BeforeClass
     public void doLogin() {
@@ -49,25 +56,30 @@ public class AddEmployee {
     @DataProvider
     public Object[][] getData() throws IOException {
         // 1. read file
-        FileInputStream fis = new FileInputStream("Data/myData.xls");
+        FileInputStream fis = new FileInputStream("Data/myData1.xlsx");
         //2. convert file object into workbook object
-        HSSFWorkbook workbook = new HSSFWorkbook(fis);
+        XSSFWorkbook workbook = new XSSFWorkbook(fis);
         //3. choose sheet
-        HSSFSheet sheet = workbook.getSheet("Add Employee");
+        XSSFSheet sheet = workbook.getSheet("Add Employee 2");
         int rowCount = sheet.getPhysicalNumberOfRows();
         int colCount = sheet.getRow(0).getLastCellNum();
 
-        Object[][] data = new Object[rowCount][colCount];
+        Object[][] data = new Object[rowCount-1][colCount];
 
-        for (int i=0;i<rowCount;i++)
+        for (int i=0;i<rowCount-1;i++)
         {
-            HSSFRow row = sheet.getRow(i);
+            XSSFRow row = sheet.getRow(i+1);
 
-            data[i][0] = row.getCell(0).toString().trim();
-            data[i][1] = row.getCell(1).toString().trim();
-            data[i][2] = row.getCell(2).toString().trim();
-            data[i][3] = row.getCell(3).toString().trim();
+            for (int j=0;j<colCount ;j++) {
 
+                XSSFCell cell = row.getCell(j);
+                if(cell==null)
+                    data[i][j] = "";
+                else{
+                    cell.setCellType(CellType.STRING);
+                    data[i][j] = makeIntegerWithoutDecimal(cell.toString().trim());
+                }
+            }
         }
 
         return data;
