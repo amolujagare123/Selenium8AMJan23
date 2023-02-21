@@ -30,7 +30,7 @@ public class LoginDemo {
        /* String expected = "POSNIC - Dashboard";
         String actual = driver.getTitle();
 */      String actual = "";
-        String expected = "Dashboard";
+        String expected = "Dashboard123";
         try {
              actual = driver.findElement(By.xpath("//a[@class='active-tab dashboard-tab']")).getText();
         } catch(Exception e)
@@ -39,9 +39,14 @@ public class LoginDemo {
         }
         System.out.println("expected="+expected);
         System.out.println("actual="+actual);
-
-
         Assert.assertEquals(actual,expected,"This is not a dashboard");
+       /* try {
+            Assert.assertEquals(actual,expected,"This is not a dashboard");
+        }
+        catch (Exception e)
+        {
+
+        }*/
     }
 
 
