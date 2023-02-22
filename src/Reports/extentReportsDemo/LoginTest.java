@@ -13,6 +13,10 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+
+import static Reports.utility.ForExtentReport.theScreenshot;
+
 public class LoginTest {
     ExtentReports extent;
     @BeforeClass
@@ -42,8 +46,7 @@ public class LoginTest {
 
 
     @Test
-    public void loginTest3()
-    {
+    public void loginTest3() throws IOException {
         ExtentTest test = extent.createTest("valid Login Test");
 
         WebDriver driver = new ChromeDriver();
@@ -80,12 +83,13 @@ public class LoginTest {
         }
         catch (AssertionError e)
         {
+
+            test.addScreenCaptureFromPath("./screenshots/"+theScreenshot(driver));
             test.fail(e.getMessage());
         }
     }
     @Test
-    public void loginTest1()
-    {
+    public void loginTest1() throws IOException {
         ExtentTest test = extent.createTest("invalid Login Test");
 
         WebDriver driver = new ChromeDriver();
@@ -122,6 +126,11 @@ public class LoginTest {
         }
         catch (AssertionError e)
         {
+          //  test.fail(e.getMessage());
+       //    test.addScreenCaptureFromPath("D:\\Study\\CucumberPOM-Aug22\\Selenium8AMJan23\\Report\\screenshots\\"+theScreenshot(driver));
+
+
+           test.addScreenCaptureFromPath("./screenshots/"+theScreenshot(driver));
             test.fail(e.getMessage());
         }
        /* String expected = "POSNIC - Dashboard";
@@ -133,8 +142,7 @@ public class LoginTest {
         Assert.assertEquals(actual,expected,"This is not a dashboard");*/
     }
     @Test
-    public void loginTest2()
-    {
+    public void loginTest2() throws IOException {
         ExtentTest test = extent.createTest("blank Login Test");
 
         WebDriver driver = new ChromeDriver();
@@ -171,6 +179,8 @@ public class LoginTest {
         }
         catch (AssertionError e)
         {
+           // test.fail(e.getMessage());
+            test.addScreenCaptureFromPath("./screenshots/"+theScreenshot(driver));
             test.fail(e.getMessage());
         }
 

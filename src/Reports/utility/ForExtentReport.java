@@ -1,25 +1,18 @@
-package Reports.ScreenshotDemo;
+package Reports.utility;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class MyScreenshot {
+public class ForExtentReport {
 
-    @Test
-    public void sample() throws IOException {
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("http://instagram.com");
-
+    public static String theScreenshot(WebDriver driver) throws IOException {
         // 1. create the object reference of TakesScreenshot
         // assign current driver to it
 
@@ -34,10 +27,8 @@ public class MyScreenshot {
         String fileName = "IMG"+timeStamp+".png";
 
         // 3. create an image (real)
-        FileUtils.copyFile(srcFile, new File("D:\\programs\\"+fileName));
+        FileUtils.copyFile(srcFile, new File("Report\\screenshots\\"+fileName));
 
-
+        return fileName;
     }
-
-
 }
