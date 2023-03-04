@@ -10,22 +10,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class SocialSites {
+public class SocialSites  extends InitTests {
 
-    WebDriver driver;
-
-    @BeforeClass  // this method will run before first test method of the class
-    public  void openBrowser()
-    {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-    }
-
-    @AfterClass  // this method will run after last test method of the class
-    public  void closeBrowser() throws InterruptedException {
-        Thread.sleep(2000);
-        driver.close();
-    }
 
     @Test (priority = 2)
     public void facebook()

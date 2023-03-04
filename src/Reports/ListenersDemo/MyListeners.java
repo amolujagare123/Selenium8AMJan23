@@ -1,5 +1,6 @@
 package Reports.ListenersDemo;
 
+import TestNGDemo.real.InitTests;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import org.openqa.selenium.WebDriver;
@@ -8,10 +9,12 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
+import java.io.IOException;
+
 import static Reports.utility.ForExtentReport.getExtentObject;
 import static Reports.utility.ForExtentReport.theScreenshot;
 
-public class MyListeners implements ITestListener {
+    public class MyListeners extends InitTests implements ITestListener {
     ExtentReports extent;
     ExtentTest test;
     //WebDriver driver = new ChromeDriver();
@@ -28,7 +31,11 @@ public class MyListeners implements ITestListener {
     public void onTestFailure(ITestResult result) {
         test.info(result.getMethod().getMethodName());
         test.fail(result.getThrowable());
-     //   test.addScreenCaptureFromPath("./screenshots/"+theScreenshot(driver));
+        try {
+            test.addScreenCaptureFromPath("./screenshots/"+theScreenshot(driver));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
